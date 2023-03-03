@@ -1,3 +1,5 @@
+# k번째 수
+
 def solution(citations):
   """
   이거 풀이 오 테케에 대해서느 안되는지 모르겠음
