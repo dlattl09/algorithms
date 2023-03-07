@@ -14,3 +14,20 @@ def solution(m, n, puddles):
             else:
                 d[i][j] = (d[i - 1][j] + d[i][j - 1])%1000000007
     return d[m][n]
+  
+  
+  
+  def solution(m, n, puddles):
+    """
+    맞는 풀이
+    """
+    d = [[0] * (n + 1) for _ in range(m + 1)]
+    for i in range(1, m+1):
+        for j in range(1, n+1):
+            if i==1 and j==1:
+                d[i][j] = 1
+            elif [i,j] in puddles:
+                d[i][j] = 0
+            else:
+                d[i][j] = (d[i - 1][j] + d[i][j - 1])%1000000007
+    return d[m][n]
