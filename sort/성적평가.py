@@ -32,9 +32,8 @@ print(*rank2)
 print(*rank3)
 print(*totalrank)
 
-
-# Merge sort를 사용한 경우
-# 여전히 시간제한 
+###########################
+# Merge sort를 사용한 경우 : 테케에서도 시간초과 없이 잘 돌아감
 import sys
  
 n = int(sys.stdin.readline())
@@ -66,32 +65,34 @@ for _ in range(3):
     results.append(list(map(int, sys.stdin.readline().split())))
 
 total = []
-rank1 = []
-rank2 = []
-rank3 = []
-totalrank = []
 
 for i in range(n):
     total.append(results[0][i]+results[1][i]+results[2][i])
 
-for i in range(3):
-    rank1 = merge_sort(results[0])
-    rank2 = merge_sort(results[1])
-    rank3 = merge_sort(results[2])
-    totalrank = merge_sort(total)
+rank1 = merge_sort(results[0])
+rank2 = merge_sort(results[1])
+rank3 = merge_sort(results[2])
+totalrank = merge_sort(total)
 
 
-for i in results[0]:
-    print(rank1.index(i)+1, end = ' ')
+def compute_idx(arr, sorted_arr):
+    dic = {}
+    idx = 0
+    for i in sorted_arr:
+        idx +=1
+        if i not in dic:
+            dic[i] = idx
+    for i in range(len(sorted_arr)):
+        print(dic[arr[i]], end= ' ')
+
+compute_idx(results[0], rank1)
 print()
-for i in results[1]:
-    print(rank2.index(i)+1, end = ' ')
+compute_idx(results[1], rank2)
 print()
-for i in results[2]:
-    print(rank3.index(i)+1, end = ' ')
+compute_idx(results[2], rank3)
 print()
-for i in total:
-    print(totalrank.index(i)+1, end = ' ')
+compute_idx(total, totalrank)
 print()
+
 
 
